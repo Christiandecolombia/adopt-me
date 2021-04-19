@@ -6,12 +6,23 @@ import "../assets/scss/main.scss"
 
 import { Route, Switch, BrowserRouter } from "react-router-dom"
 
+import PetTypesList from "./PetTypesList"
+
 const App = props => {
   useEffect(() => {
     $(document).foundation()
   }, [])
 
-  return <div className="callout primary">Replace this div with your Router.</div>
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={PetTypesList} >
+          {/* <Redirct to="/pets" /> */}
+        </Route>
+        <Route path="/pets" component={PetTypesList} ></Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default hot(App)

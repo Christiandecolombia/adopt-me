@@ -6,6 +6,7 @@ import hbsMiddleware from "express-handlebars"
 import _ from "lodash"
 import pg from 'pg'
 import { fileURLToPath } from 'url'
+import rootRouter from "./routes/rootRouter.js"
 
 const app = express()
 
@@ -29,6 +30,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, "../client/public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(rootRouter)
 
 // Express routes
 app.get('*', (req, res) => {
