@@ -43,9 +43,8 @@ class PetType {
     try {
       const query = `SELECT * FROM adoptable_pets WHERE pet_type_id = $1;`
       const result = await pool.query(query, [this.id])
-      const relatedPetData = result.rows[0]
+      const relatedPetData = result.rows
       const relatedPets = relatedPetData.map(pet => new AdoptablePet(pet))
-
       return relatedPets
     } catch (err) {
       console.log(err)
