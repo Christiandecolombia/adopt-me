@@ -27,12 +27,29 @@ class PetType {
 
   static async findByType(type) {
     try {
-      const result = await pool.query(`SELECT * FROM  pet_types WHERE type = ${type};`)
+      const queryString = "SELECT * FROM  pet_types WHERE type = $1;"
+      const result = await pool.query(queryString, [type])
       const petTypeData = result.rows[0];
       const petType = new this(petTypeData)
       return petType
     } catch (error) {
       throw (error)
+    }
+  }
+
+  async adoptablePets() {
+    const petFile = await import("./AdoptablePet.js")
+    const AdoptablePet = petFile.default
+    try {
+      const query = `SELECT * FROM adoptable_pets WHERE pet_type_id = $1;`
+      const result = await pool.query(query, [this.id])
+      const relatedPetData = result.rows[0]
+      const relatedPets = relatedPetData.map(pet => new AdoptablePet(pet))
+
+      return relatedPets
+    } catch (err) {
+      console.log(err)
+      throw (err)
     }
   }
 }

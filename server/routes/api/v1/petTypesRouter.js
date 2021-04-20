@@ -8,18 +8,18 @@ petTypesRouter.get('/', async (req, res) => {
     const petTypes = await PetType.findAll()
     res.status(200).json({ petTypes: petTypes })
   } catch (error) {
-    res.status(500).json({ errors: error })
+    return res.status(500).json({ errors: error })
   }
 })
 
 petTypesRouter.get('/:petType', async (req, res) => {
   try {
     const petType = await PetType.findByType(req.params.type)
+    petType.adoptablePets = await petType.adoptablePets()
     res.status(200).json({ petTypes: petType })
   } catch (error) {
-    res.status(500).json({ errors: error })
+    return res.status(500).json({ errors: error })
   }
-
 })
 
 export default petTypesRouter
