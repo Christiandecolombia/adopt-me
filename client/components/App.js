@@ -4,7 +4,9 @@ import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
 import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
+
 import PetTypesList from "./PetTypesList"
+
 const App = props => {
   useEffect(() => {
     $(document).foundation()
