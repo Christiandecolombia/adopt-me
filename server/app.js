@@ -32,11 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(rootRouter)
 
-// Express routes
-app.get('*', (req, res) => {
-  res.render("home")
-})
-
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
 })
