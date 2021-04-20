@@ -4,7 +4,7 @@ import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
 
-import { Route, Switch, BrowserRouter } from "react-router-dom"
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
 
 import PetTypesList from "./PetTypesList"
 
@@ -16,8 +16,8 @@ const App = props => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={PetTypesList} >
-          {/* <Redirct to="/pets" /> */}
+        <Route exact path="/">
+          <Redirect to="/pets" />
         </Route>
         <Route path="/pets" component={PetTypesList} ></Route>
       </Switch>

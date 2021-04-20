@@ -13,4 +13,8 @@ petTypesRouter.get('/', async (req, res) => {
   }
 })
 
+petTypesRouter.get('/:petType', async (req, res) => {
+  
+})
+
 export default petTypesRouter
