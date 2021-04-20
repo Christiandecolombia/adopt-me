@@ -7,6 +7,7 @@ import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
 
 import PetTypesList from "./PetTypesList"
 import AdoptablePetsList from "./AdoptablePetsList"
+import NavBar from "./NavBar"
 
 const App = props => {
   useEffect(() => {
@@ -14,13 +15,12 @@ const App = props => {
   }, [])
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/pets" />
-        </Route>
-        <Route exact path="/pets" component={PetTypesList} ></Route>
-        <Route exact path="/pets/:petType" component={AdoptablePetsList}></Route>
-      </Switch>
+      <NavBar />
+      <Route exact path="/">
+        <Redirect to="/pets" />
+      </Route>
+      <Route exact path="/pets" component={PetTypesList} ></Route>
+      <Route exact path="/pets/:petType" component={AdoptablePetsList}></Route>
     </BrowserRouter>
   )
 }
