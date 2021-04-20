@@ -3,7 +3,7 @@ import { hot } from "react-hot-loader/root"
 import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
-import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
+import { Route, BrowserRouter, Redirect } from "react-router-dom"
 
 import PetTypesList from "./PetTypesList"
 import AdoptablePetsList from "./AdoptablePetsList"
