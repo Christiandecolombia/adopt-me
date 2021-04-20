@@ -6,14 +6,20 @@ const petTypesRouter = new express.Router()
 petTypesRouter.get('/', async (req, res) => {
   try {
     const petTypes = await PetType.findAll()
-    res.json({ petTypes: petTypes })
+    res.status(200).json({ petTypes: petTypes })
   } catch (error) {
-    res.json({ errors: error })
+    res.status(500).json({ errors: error })
   }
 })
 
 petTypesRouter.get('/:petType', async (req, res) => {
-  
+  try {
+    const petType = await PetType.findByType(req.params.type)
+    res.status(200).json({ petTypes: petType })
+  } catch (error) {
+    res.status(500).json({ errors: error })
+  }
+
 })
 
 export default petTypesRouter

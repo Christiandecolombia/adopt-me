@@ -1,11 +1,11 @@
 import pg from "pg"
 
 const pool = new pg.Pool({
-    connectionString: "postgres://postgres:password@localhost:5432/adopt-me"
+  connectionString: "postgres://postgres:password@localhost:5432/adopt-me"
 })
 
 class PetType {
-  constructor({id, type, imgUrl, img_url, description}) {
+  constructor({ id, type, imgUrl, img_url, description }) {
     this.id = id
     this.type = type
     this.imgUrl = imgUrl || img_url
@@ -21,7 +21,18 @@ class PetType {
       })
       return petTypes
     } catch (error) {
-      throw(error)
+      throw (error)
+    }
+  }
+
+  static async findByType(type) {
+    try {
+      const result = await pool.query(`SELECT * FROM  pet_types WHERE type = ${type};`)
+      const petTypeData = result.rows[0];
+      const petType = new this(petTypeData)
+      return petType
+    } catch (error) {
+      throw (error)
     }
   }
 }
