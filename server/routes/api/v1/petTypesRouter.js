@@ -1,5 +1,4 @@
 import express from "express"
-// import Adventure from "../../../models/Adventure.js"
 import PetType from "../../../models/PetType.js"
 
 const petTypesRouter = new express.Router()
