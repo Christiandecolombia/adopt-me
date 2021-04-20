@@ -25,11 +25,11 @@ const PetTypesList = props => {
 
   const petTypeTileComponents = petTypes.map(petType => {
     return (
-      <PetTypeTile 
-        key={petType.id} 
-        type={petType.type} 
-        img={petType.imgUrl} 
-        description={petType.description} 
+      <PetTypeTile
+        key={petType.id}
+        type={petType.type}
+        img={petType.imgUrl}
+        description={petType.description}
       />
     )
   })
