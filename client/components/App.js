@@ -3,15 +3,21 @@ import { hot } from "react-hot-loader/root"
 import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
-
-import { Route, Switch, BrowserRouter } from "react-router-dom"
-
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
+import PetTypesList from "./PetTypesList"
 const App = props => {
   useEffect(() => {
     $(document).foundation()
   }, [])
-
-  return <div className="callout primary">Replace this div with your Router.</div>
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/pets" />
+        </Route>
+        <Route path="/pets" component={PetTypesList} ></Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
-
 export default hot(App)
