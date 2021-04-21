@@ -3,7 +3,7 @@ import { hot } from "react-hot-loader/root"
 import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
-import { Route, BrowserRouter, Redirect } from "react-router-dom"
+import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom"
 
 import PetTypesList from "./PetTypesList"
 import AdoptablePetsList from "./AdoptablePetsList"
@@ -16,11 +16,13 @@ const App = props => {
   return (
     <BrowserRouter>
       <NavBar />
+    <Switch>
       <Route exact path="/">
         <Redirect to="/pets" />
       </Route>
       <Route exact path="/pets" component={PetTypesList} ></Route>
       <Route exact path="/pets/:petType" component={AdoptablePetsList}></Route>
+    </Switch>
     </BrowserRouter>
   )
 }
