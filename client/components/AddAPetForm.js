@@ -53,7 +53,7 @@ const AddAPetForm = props => {
 
   const postNewPet = async () => {
     try {
-      const response = await fetch("/api/v1/petTypes", {
+      const response = await fetch("/api/v1/petTypes/:petType", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -65,6 +65,7 @@ const AddAPetForm = props => {
         throw(error)
       }
       const body = await response.json()
+      console.log(body)
       setMessage("Your surrender request is in process.")
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)

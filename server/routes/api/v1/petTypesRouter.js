@@ -37,9 +37,25 @@ petTypesRouter.get('/:petType', async (req, res) => {
 
 petTypesRouter.post('/:petType', async (req, res) => {
   try {
-    const adoptablePet = new AdoptablePet(req.body)
-    const surrenderApplication = new SurrenderApplication(req.body)
+    const petType = await PetType.findByType(req.body.petType)
+    
+    const adoptablePet = new AdoptablePet({ 
+      name: req.body.petName,
+      imgUrl: req.body.petImage,
+      age: req.body.petAge,
+      vaccinationStatus: req.body.vaccinationStatus,
+      petTypeId: petType.id,
+      adoptionStory: "Adoption story pending"
+    })
+    console.log(adoptablePet)
     await adoptablePet.save()
+    const surrenderApplication = new SurrenderApplication({
+      name:  req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      adoptablePetId: adoptablePet.id
+    })
+    console.log(surrenderApplication)
     await surrenderApplication.save()
     res.status(201).json({ pets: adoptablePet })
   } catch (error) {

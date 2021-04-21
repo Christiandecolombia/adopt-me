@@ -58,11 +58,11 @@ class PetType {
     try {
       const query = `SELECT *
       FROM adoptable_pets 
-      JOIN surrender_applications 
+      LEFT JOIN surrender_applications 
       ON adoptable_pet_id = adoptable_pets.id 
       AND surrender_applications.status = 'accepted'
-      WHERE pet_type_id = $1 ;`
-      const result = await pool.query(query, [this.id],)
+      WHERE pet_type_id = $1;`
+      const result = await pool.query(query, [this.id])
       const relatedPetData = result.rows
       const relatedPets = relatedPetData.map(pet => new AdoptablePet(pet))
       return relatedPets
