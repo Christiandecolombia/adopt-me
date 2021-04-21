@@ -65,7 +65,6 @@ const AddAPetForm = props => {
         throw(error)
       }
       const body = await response.json()
-      console.log(body)
       setMessage("Your surrender request is in process.")
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)

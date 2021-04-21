@@ -14,17 +14,6 @@ petTypesRouter.get('/', async (req, res) => {
   }
 })
 
-// petTypesRouter.get('/:petType', async (req, res) => {
-//   try {
-//     const petType = await PetType.findByType(req.params.petType)
-//     AdoptablePet.getAvailablePets()
-//     petType.available = await petType.getAvailablePets()
-//     res.status(200).json({ pets: petTypes })
-//   } catch (error) {
-//     return res.status(500).json({ errors: error })
-//   }
-// })
-
 petTypesRouter.get('/:petType', async (req, res) => {
   try {
     const petType = await PetType.findByType(req.params.petType)
@@ -47,7 +36,6 @@ petTypesRouter.post('/:petType', async (req, res) => {
       petTypeId: petType.id,
       adoptionStory: "Adoption story pending"
     })
-    console.log(adoptablePet)
     await adoptablePet.save()
     const surrenderApplication = new SurrenderApplication({
       name:  req.body.name,
@@ -55,7 +43,6 @@ petTypesRouter.post('/:petType', async (req, res) => {
       email: req.body.email,
       adoptablePetId: adoptablePet.id
     })
-    console.log(surrenderApplication)
     await surrenderApplication.save()
     res.status(201).json({ pets: adoptablePet })
   } catch (error) {
