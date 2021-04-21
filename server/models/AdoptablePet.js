@@ -29,22 +29,9 @@ class AdoptablePet {
     }
   }
 
-  static async getAvailablePets() {
-    const surrenderApplicaionFile = await import("./SurrenderApplication.js")
-    const SurrenderApplication = surrenderApplicaionFile.default
-    try {
-      const query = `SELECT * FROM surrender_applications WHERE status = $1;`
-      const result = await pool.query(query, "accepted")
-      const relatedPetData = result.rows
-      const relatedPets = relatedPetData.map(pet => new SurrenderApplication(pet))
-      return relatedPets
-    } catch (err) {
-      console.log(err)
-      throw (err)
-    }
-  }
   async save() {
     try {
+      this.petTypeId = await pool.query(`SELECT id FROM pet_types WHERE type= ${petType}`)
       const query = "INSERT INTO adoptable_pets (name, img_url, age, vaccination_status, adoption_story, available_for_adoption, pet_type_id) VALUE ($1, $2, $3, $4, $5, $6, $7) RETURNING id;"
       const result = await pool.query(query, [this.name, this.imgUrl, this.age, this.vaccinationStatus, this.adoptionStory, this.availableForAdoption, this.petTypeId])
       this.id = result.rows[0].id
