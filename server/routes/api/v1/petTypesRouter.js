@@ -3,9 +3,19 @@ import PetType from "../../../models/PetType.js"
 
 const petTypesRouter = new express.Router()
 
+// replaced with getting only the Avalailable Pets
+// petTypesRouter.get('/', async (req, res) => {
+//   try {
+//     const petTypes = await PetType.findAll()
+//     res.status(200).json({ petTypes: petTypes })
+//   } catch (error) {
+//     return res.status(500).json({ errors: error })
+//   }
+// })
+
 petTypesRouter.get('/', async (req, res) => {
   try {
-    const petTypes = await PetType.findAll()
+    const petTypes = await PetType.getAvailablePets()
     res.status(200).json({ petTypes: petTypes })
   } catch (error) {
     return res.status(500).json({ errors: error })

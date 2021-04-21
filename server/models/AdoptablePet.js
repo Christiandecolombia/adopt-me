@@ -5,7 +5,7 @@ const pool = new pg.Pool({
 })
 
 class AdoptablePet {
-  constructor({id, name, imgUrl, img_url, age, vaccinationStatus, vaccination_status, adoptionStory, adoption_story, availableForAdoption, available_for_adoption, petTypeId, pet_type_id}) {
+  constructor({ id, name, imgUrl, img_url, age, vaccinationStatus, vaccination_status, adoptionStory, adoption_story, availableForAdoption, available_for_adoption, petTypeId, pet_type_id }) {
     this.id = id
     this.name = name
     this.imgUrl = imgUrl || img_url
@@ -25,7 +25,32 @@ class AdoptablePet {
       return adoptablePets
     } catch (error) {
       console.log(error)
-      throw(error)
+      throw (error)
+    }
+  }
+
+  static async getAvailablePets() {
+    const surrenderApplicaionFile = await import("./SurrenderApplication.js")
+    const SurrenderApplication = surrenderApplicaionFile.default
+    try {
+      const query = `SELECT * FROM surrender_applications WHERE status = $1;`
+      const result = await pool.query(query, "accepted")
+      const relatedPetData = result.rows
+      const relatedPets = relatedPetData.map(pet => new SurrenderApplication(pet))
+      return relatedPets
+    } catch (err) {
+      console.log(err)
+      throw (err)
+    }
+  }
+  async save() {
+    try {
+      const query = "INSERT INTO adoptable_pets (name, img_url, age, vaccination_status, adoption_story, available_for_adoption, pet_type_id) VALUE ($1, $2, $3, $4, $5, $6, $7) RETURNING id;"
+      const result = await pool.query(query, [this.name, this.imgUrl, this.age, this.vaccinationStatus, this.adoptionStory, this.availableForAdoption, this.petTypeId])
+      this.id = result.rows[0].id
+      return true
+    } catch (err) {
+      throw (err)
     }
   }
 }
