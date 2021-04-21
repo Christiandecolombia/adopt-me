@@ -16,3 +16,14 @@ CREATE TABLE adoptable_pets (
   available_for_adoption BOOLEAN DEFAULT true,
   pet_type_id INTEGER REFERENCES pet_types(id)
 );
+DROP TABLE IF EXISTS surrender_applications;
+CREATE TABLE surrender_applications (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  phone VARCHAR(12),
+  email VARCHAR(255),
+  status VARCHAR(255) DEFAULT 'pending',
+  adoptable_pet_id INTEGER REFERENCES adoptable_pet(id)
+);
+
+
