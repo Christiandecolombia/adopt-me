@@ -30,13 +30,11 @@ const AdoptionForm = props => {
         }),
         body: JSON.stringify(adoptionForm)
       })
-      console.log(response)
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
         throw (error)
       }
       const body = await response.json()
-      console.log(body)
       setAdoptionForm(body.adoptionApplication)
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -69,6 +67,7 @@ const AdoptionForm = props => {
     event.preventDefault()
     if (isValidSubmission()) {
       postApplication()
+      props.onSubmit()
     }
   }
 
@@ -77,7 +76,7 @@ const AdoptionForm = props => {
       <ErrorList errors={errors} />
       <h3>Apply to adopt {props.name}!</h3>
       <label htmlFor="name">Name:
-        <input 
+        <input
           type="text"
           name="name"
           id="name"
@@ -85,33 +84,33 @@ const AdoptionForm = props => {
           value={adoptionForm.name}
         />
       </label>
-      
+
       <label htmlFor="phoneNumber">Phone Number:
         <input
-        type="tel"
-        id="phoneNumber"
-        name="phoneNumber"
-        onChange={handleInput}
-        value={adoptionForm.phoneNumber}
+          type="number"
+          id="phoneNumber"
+          name="phoneNumber"
+          onChange={handleInput}
+          value={adoptionForm.phoneNumber}
         />
       </label>
 
       <label htmlFor="email">Email:
         <input
-        type="email"
-        id="email"
-        name="email"
-        onChange={handleInput}
-        value={adoptionForm.email}
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleInput}
+          value={adoptionForm.email}
         />
       </label>
 
       <label htmlFor="homeStatus">Home status:
         <select
-        id="homeStatus"
-        name="homeStatus"
-        onChange={handleInput}
-        value={adoptionForm.homeStatus}>
+          id="homeStatus"
+          name="homeStatus"
+          onChange={handleInput}
+          value={adoptionForm.homeStatus}>
           {homes}
         </select>
       </label>

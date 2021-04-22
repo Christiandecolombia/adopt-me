@@ -5,6 +5,8 @@ import AdoptionForm from "./AdoptionForm"
 
 const PetShow = props => {
   const [pet, setPet] = useState({})
+  const [adoptionForm, setAdoptionForm] = useState("hide-form")
+  const [submitMessage, setSubmitMessage] = useState("")
 
   const getPet = async () => {
     const adoptablePetId = props.match.params.adoptablePetId
@@ -35,6 +37,15 @@ const PetShow = props => {
     vaccination = "No"
   }
 
+  const onClick = (event) => {
+    setAdoptionForm("")
+  }
+
+  const onSubmit = (event) => {
+    setAdoptionForm("hide-form")
+    setSubmitMessage("Your request is in process.")
+  }
+
   let petDetail
   if (_.isEmpty(pet)) {
     petDetail = <h2 className="text-center">Sorry the pet was not found.</h2>
@@ -48,7 +59,11 @@ const PetShow = props => {
         <p>
           {pet.name}'s story: {pet.adoptionStory}
         </p>
-        <AdoptionForm name={pet.name} id={pet.id}/>
+        <button type="button" className="button" onClick={onClick}>Adopt Me!</button>
+        <div className={adoptionForm}>
+          <AdoptionForm name={pet.name} id={pet.id} onSubmit={onSubmit} />
+        </div>
+        <p>{submitMessage}</p>
       </div>
     )
   }
