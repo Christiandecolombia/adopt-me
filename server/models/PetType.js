@@ -56,10 +56,9 @@ class PetType {
     const petFile = await import("./AdoptablePet.js")
     const AdoptablePet = petFile.default
     try {
-      const query = `SELECT *
-      FROM adoptable_pets 
-      LEFT JOIN surrender_applications 
-      ON adoptable_pet_id = adoptable_pets.id 
+      const query = `SELECT  * FROM adoptable_pets
+      JOIN surrender_applications
+      ON (adoptable_pet_id = adoptable_pets.id)
       AND surrender_applications.status = 'accepted'
       WHERE pet_type_id = $1;`
       const result = await pool.query(query, [this.id])

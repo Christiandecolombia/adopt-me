@@ -72,6 +72,7 @@ const AddAPetForm = props => {
   }
 
   const clearForm = event => {
+    event.preventDefault()
     setAddPetForm({
       name: "",
       phoneNumber: "",
@@ -89,7 +90,6 @@ const AddAPetForm = props => {
     event.preventDefault()
     if(isValidSubmission()) {
       postNewPet()
-      clearForm()
     }
   }
 
