@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import _ from "lodash"
 
+import AdoptionForm from "./AdoptionForm"
+
 const PetShow = props => {
   const [pet, setPet] = useState({})
 
