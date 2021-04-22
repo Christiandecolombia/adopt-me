@@ -15,22 +15,12 @@ petTypesRouter.get('/', async (req, res) => {
 petTypesRouter.get('/:petType', async (req, res) => {
   try {
     const petType = await PetType.findByType(req.params.petType)
-    petType.adoptablePets = await petType.adoptablePets()
+    petType.adoptablePets = await petType.getAvailablePets()
     res.status(200).json({ pets: petType })
   } catch (error) {
     res.status(500).json({ errors: error })
   }
 })
 
-petTypesRouter.get('/:petType/:adoptablePetId', async (req, res) => {
-  try {
-    const petType = await PetType.findByType(req.params.petType)
-    const adoptablePetId = req.params.adoptablePetId
-    const pet = await petType.findPet(adoptablePetId)
-    res.status(200).json({ pet: pet })
-  } catch (error) {
-    res.status(404).json({ errors: error })
-  }
-})
 
 export default petTypesRouter
