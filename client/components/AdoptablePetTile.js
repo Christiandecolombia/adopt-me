@@ -12,7 +12,7 @@ const AdoptablePetTile = props => {
   return (
     <div className="text-center">
       <Link to={`/pets/${props.petType}/${props.adoptablePetId}`}>
-        <img src={props.imgUrl}></img>
+        <img src={props.imgUrl} alt={`A cute ${props.petType}`}></img>
         <h2>Name: {props.name}</h2>
       </Link>
       <h3>Age: {props.age}</h3>

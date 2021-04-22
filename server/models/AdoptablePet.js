@@ -39,6 +39,17 @@ class AdoptablePet {
       throw (err)
     }
   }
+
+  static async findById(id) {
+    try {
+      const queryString = `SELECT * FROM adoptable_pets WHERE id = $1;`
+      const result = await pool.query(queryString, [id])
+      const pet = new this(result.rows[0])
+      return pet
+    } catch (error) {
+      throw(error)
+    }
+  }
 }
 
 export default AdoptablePet

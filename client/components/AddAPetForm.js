@@ -53,7 +53,7 @@ const AddAPetForm = props => {
 
   const postNewPet = async () => {
     try {
-      const response = await fetch("/api/v1/petTypes/:petType", {
+      const response = await fetch("/api/v1/adoptablePets", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -72,7 +72,6 @@ const AddAPetForm = props => {
   }
 
   const clearForm = event => {
-    event.preventDefault()
     setAddPetForm({
       name: "",
       phoneNumber: "",
@@ -90,6 +89,7 @@ const AddAPetForm = props => {
     event.preventDefault()
     if(isValidSubmission()) {
       postNewPet()
+      clearForm()
     }
   }
 
@@ -101,86 +101,86 @@ const AddAPetForm = props => {
       <p>{message}</p>
       <label htmlFor="name">Name:
         <input
-        type="text"
-        id="name"
-        name="name"
-        onChange={handleInput}
-        value={addPetForm.name}
+          type="text"
+          id="name"
+          name="name"
+          onChange={handleInput}
+          value={addPetForm.name}
         />
       </label>
 
       <label htmlFor="phoneNumber">Phone Number:
         <input
-        type="tel"
-        id="phoneNumber"
-        name="phoneNumber"
-        onChange={handleInput}
-        value={addPetForm.phoneNumber}
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          onChange={handleInput}
+          value={addPetForm.phoneNumber}
         />
       </label>
 
       <label htmlFor="email">Email:
         <input
-        type="email"
-        id="email"
-        name="email"
-        onChange={handleInput}
-        value={addPetForm.email}
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleInput}
+          value={addPetForm.email}
         />
       </label>
 
       <label htmlFor="petName">Pet Name:
         <input
-        type="text"
-        id="petName"
-        name="petName"
-        onChange={handleInput}
-        value={addPetForm.petName}
+          type="text"
+          id="petName"
+          name="petName"
+          onChange={handleInput}
+          value={addPetForm.petName}
         />
       </label>
 
       <label htmlFor="petAge">Pet Age:
         <input
-        type="number"
-        id="petAge"
-        name="petAge"
-        onChange={handleInput}
-        value={addPetForm.petAge}
+          type="number"
+          id="petAge"
+          name="petAge"
+          onChange={handleInput}
+          value={addPetForm.petAge}
         />
       </label>
 
       <label htmlFor="petType">Select a pet type:
         <select
-        id="petType"
-        name="petType"
-        onChange={handleInput}
-        value={addPetForm.petType}>
+          id="petType"
+          name="petType"
+          onChange={handleInput}
+          value={addPetForm.petType}>
           {petOptions}
         </select>
       </label>
 
       <label htmlFor="petImage">Pet Image:
         <input
-        type="text"
-        id="petImage"
-        name="petImage"
-        onChange={handleInput}
-        value={addPetForm.petImage}
+          type="text"
+          id="petImage"
+          name="petImage"
+          onChange={handleInput}
+          value={addPetForm.petImage}
         />
       </label>
 
       <label htmlFor="vaccinationStatus">Vaccination Status:
         <input
-        type="text"
-        id="vaccinationStatus"
-        name="vaccinationStatus"
-        onChange={handleInput}
-        value={addPetForm.vaccinationStatus}
+          type="text"
+          id="vaccinationStatus"
+          name="vaccinationStatus"
+          onChange={handleInput}
+          value={addPetForm.vaccinationStatus}
         />
       </label>
       
       <div className="button-group">
-        <button className="button" onClick={clearForm}>
+        <button type="button" className="button" onClick={clearForm}>
           Clear
         </button>
         <input className="button" type="submit" value="Submit" />
