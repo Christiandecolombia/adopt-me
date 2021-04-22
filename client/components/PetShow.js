@@ -10,7 +10,7 @@ const PetShow = props => {
     const adoptablePetId = props.match.params.adoptablePetId
     const petType = props.match.params.petType
     try {
-      const response = await fetch(`/api/v1/petTypes/${petType}/${adoptablePetId}`)
+      const response = await fetch(`/api/v1/adoptable-pets/${petType}/${adoptablePetId}`)
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
         console.log("error")

@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import _ from "lodash"
 
 import ErrorList from "./ErrorList"
 
 const AddAPetForm = props => {
-  const petTypes = [ "", "cat", "dog", "parrot"]
+  const [petTypes, setPetTypes] = useState([])
 
   const [message, setMessage] = useState("")
 
@@ -20,6 +20,20 @@ const AddAPetForm = props => {
     petImage: "",
     vaccinationStatus: ""
   })
+
+  const getPetTypes = async () => {
+    try {
+      const response = await fetch("/api/v1/pet-types")
+      if (!response.ok) {
+        const error = new Error(`${response.status} (${response.statusText})`)
+        throw(error)
+      }
+      const body = await response.json()
+      setPetTypes(body.petTypes)
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
 
   const handleInput = event => {
     setAddPetForm({
@@ -43,17 +57,17 @@ const AddAPetForm = props => {
     return _.isEmpty(submitErrors)
   }
 
-  const petOptions = petTypes.map(type => {
+  const petOptions = petTypes.map(petType => {
     return (
-      <option key={type} value={type}>
-        {type}
+      <option key={petType.id} value={petType.type}>
+        {petType.type}
       </option>
     )
-  }) 
+  })
 
   const postNewPet = async () => {
     try {
-      const response = await fetch("/api/v1/petTypes/:petType", {
+      const response = await fetch("/api/v1/adoptable-pets", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -62,7 +76,7 @@ const AddAPetForm = props => {
       })
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
-        throw(error)
+        throw (error)
       }
       const body = await response.json()
       setMessage("Your surrender request is in process.")
@@ -72,7 +86,6 @@ const AddAPetForm = props => {
   }
 
   const clearForm = event => {
-    event.preventDefault()
     setAddPetForm({
       name: "",
       phoneNumber: "",
@@ -88,10 +101,15 @@ const AddAPetForm = props => {
 
   const submitHandler = event => {
     event.preventDefault()
-    if(isValidSubmission()) {
+    if (isValidSubmission()) {
       postNewPet()
+      clearForm()
     }
   }
+
+  useEffect(() => {
+    getPetTypes()
+  }, [])
 
   return (
     <form className="callout" onSubmit={submitHandler}>
@@ -178,9 +196,9 @@ const AddAPetForm = props => {
           value={addPetForm.vaccinationStatus}
         />
       </label>
-      
+
       <div className="button-group">
-        <button className="button" onClick={clearForm}>
+        <button type="button" className="button" onClick={clearForm}>
           Clear
         </button>
         <input className="button" type="submit" value="Submit" />
