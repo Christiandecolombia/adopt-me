@@ -14,7 +14,6 @@ const PetTypesList = props => {
         throw(error)
       }
       const data = await response.json()
-      console.log(data)
       const petTypesData = data.petTypes
       setPetTypes(petTypesData)
     } catch (error) {

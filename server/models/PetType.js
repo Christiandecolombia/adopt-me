@@ -52,6 +52,26 @@ class PetType {
     }
   }
 
+  async getAvailablePets() {
+    const petFile = await import("./AdoptablePet.js")
+    const AdoptablePet = petFile.default
+    try {
+      const query = `SELECT adoptable_pets.id, adoptable_pets.name, adoptable_pets.img_url, adoptable_pets.age, adoptable_pets.vaccination_status, adoptable_pets.adoption_story, adoptable_pets.pet_type_id
+      FROM adoptable_pets
+      LEFT JOIN surrender_applications
+      ON (adoptable_pet_id = adoptable_pets.id)
+      AND surrender_applications.status = 'accepted'
+      WHERE pet_type_id = $1;`
+      const result = await pool.query(query, [this.id])
+      const relatedPetData = result.rows
+      const relatedPets = relatedPetData.map(pet => new AdoptablePet(pet))
+      return relatedPets
+    } catch (err) {
+      console.log(err)
+      throw (err)
+    }
+  }
+  
   async findPet(adoptablePetId) {
     const petFile = await import("./AdoptablePet.js")
     const AdoptablePet = petFile.default
