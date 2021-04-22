@@ -10,7 +10,7 @@ const AddAPetForm = props => {
 
   const [errors, setErrors] = useState({})
 
-  const [newPet, setNewPet] = useState({
+  const [addPetForm, setAddPetForm] = useState({
     name: "",
     phoneNumber: "",
     email: "",
@@ -36,8 +36,8 @@ const AddAPetForm = props => {
   }
 
   const handleInput = event => {
-    setNewPet({
-      ...newPet,
+    setAddPetForm({
+      ...addPetForm,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
@@ -46,7 +46,7 @@ const AddAPetForm = props => {
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "petName", "petAge", "petType", "petImage", "vaccinationStatus"]
     requiredFields.forEach(field => {
-      if (newPet[field].trim() === "") {
+      if (addPetForm[field].trim() === "") {
         submitErrors = {
           ...submitErrors,
           [field]: "can't be blank"
@@ -72,7 +72,7 @@ const AddAPetForm = props => {
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify(newPet)
+        body: JSON.stringify(addPetForm)
       })
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
@@ -86,7 +86,7 @@ const AddAPetForm = props => {
   }
 
   const clearForm = event => {
-    setNewPet({
+    setAddPetForm({
       name: "",
       phoneNumber: "",
       email: "",
@@ -123,7 +123,7 @@ const AddAPetForm = props => {
           id="name"
           name="name"
           onChange={handleInput}
-          value={newPet.name}
+          value={addPetForm.name}
         />
       </label>
 
@@ -133,7 +133,7 @@ const AddAPetForm = props => {
           id="phoneNumber"
           name="phoneNumber"
           onChange={handleInput}
-          value={newPet.phoneNumber}
+          value={addPetForm.phoneNumber}
         />
       </label>
 
@@ -143,7 +143,7 @@ const AddAPetForm = props => {
           id="email"
           name="email"
           onChange={handleInput}
-          value={newPet.email}
+          value={addPetForm.email}
         />
       </label>
 
@@ -153,7 +153,7 @@ const AddAPetForm = props => {
           id="petName"
           name="petName"
           onChange={handleInput}
-          value={newPet.petName}
+          value={addPetForm.petName}
         />
       </label>
 
@@ -163,7 +163,7 @@ const AddAPetForm = props => {
           id="petAge"
           name="petAge"
           onChange={handleInput}
-          value={newPet.petAge}
+          value={addPetForm.petAge}
         />
       </label>
 
@@ -172,7 +172,7 @@ const AddAPetForm = props => {
           id="petType"
           name="petType"
           onChange={handleInput}
-          value={newPet.petType}>
+          value={addPetForm.petType}>
           {petOptions}
         </select>
       </label>
@@ -183,7 +183,7 @@ const AddAPetForm = props => {
           id="petImage"
           name="petImage"
           onChange={handleInput}
-          value={newPet.petImage}
+          value={addPetForm.petImage}
         />
       </label>
 
@@ -193,7 +193,7 @@ const AddAPetForm = props => {
           id="vaccinationStatus"
           name="vaccinationStatus"
           onChange={handleInput}
-          value={newPet.vaccinationStatus}
+          value={addPetForm.vaccinationStatus}
         />
       </label>
 
