@@ -23,7 +23,7 @@ const AddAPetForm = props => {
 
   const getPetTypes = async () => {
     try {
-      const response = await fetch("/api/v1/petTypes")
+      const response = await fetch("/api/v1/pet-types")
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
         throw(error)
