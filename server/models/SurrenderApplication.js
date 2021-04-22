@@ -26,4 +26,4 @@ class SurrenderApplication {
     }
 }
 
-export default SurrenderApplicaion
+export default SurrenderApplication
