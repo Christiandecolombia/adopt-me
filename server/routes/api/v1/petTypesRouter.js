@@ -10,7 +10,7 @@ petTypesRouter.get('/', async (req, res) => {
     const petTypes = await PetType.findAll()
     res.status(200).json({ petTypes: petTypes })
   } catch (error) {
-    return res.status(500).json({ errors: error })
+    res.status(500).json({ errors: error })
   }
 })
 
@@ -20,7 +20,18 @@ petTypesRouter.get('/:petType', async (req, res) => {
     petType.adoptablePets = await petType.getAvailablePets()
     res.status(200).json({ pets: petType })
   } catch (error) {
-    return res.status(500).json({ errors: error })
+    res.status(500).json({ errors: error })
+  }
+})
+
+petTypesRouter.get('/:petType/:adoptablePetId', async (req, res) => {
+  try {
+    const petType = await PetType.findByType(req.params.petType)
+    const adoptablePetId = req.params.adoptablePetId
+    const pet = await petType.findPet(adoptablePetId)
+    res.status(200).json({ pet: pet })
+  } catch (error) {
+    res.status(404).json({ errors: error })
   }
 })
 

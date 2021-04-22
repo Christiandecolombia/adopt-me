@@ -13,7 +13,6 @@ const PetTypesList = props => {
         console.log("error")
         throw(error)
       }
-      // array of petType object
       const data = await response.json()
       console.log(data)
       const petTypesData = data.petTypes
