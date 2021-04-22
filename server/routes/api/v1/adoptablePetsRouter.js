@@ -2,6 +2,7 @@ import express from "express"
 import PetType from "../../../models/PetType.js"
 import AdoptablePet from "../../../models/AdoptablePet.js"
 import SurrenderApplication from "../../../models/SurrenderApplication.js"
+import AdoptionApplication from "../../../models/AdoptionApplication.js"
 
 const adoptablePetsRouter = new express.Router()
 
@@ -45,6 +46,7 @@ adoptablePetsRouter.post('/', async (req, res) => {
 
 adoptablePetsRouter.post('/:id', async (req, res) => {
   try {
+    debugger
     const adoptionApplication = new AdoptionApplication({
       name: req.body.name,
       phoneNumber: req.body.phoneNumber,
@@ -52,7 +54,8 @@ adoptablePetsRouter.post('/:id', async (req, res) => {
       homeStatus: req.body.homeStatus,
       applicationStatus: req.body.applicationStatus,
       adoptablePetId: req.params.id
-    })
+    }) 
+    debugger
     await adoptionApplication.save()
     res.status(201).json({ adoptionApplication: adoptionApplication })
   } catch (error) {
