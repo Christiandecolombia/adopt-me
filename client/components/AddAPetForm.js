@@ -4,7 +4,7 @@ import _ from "lodash"
 import ErrorList from "./ErrorList"
 
 const AddAPetForm = props => {
-  const petTypes = [ "", "cat", "dog", "parrot"]
+  const petTypes = ["", "cat", "dog", "parrot"]
 
   const [message, setMessage] = useState("")
 
@@ -49,11 +49,11 @@ const AddAPetForm = props => {
         {type}
       </option>
     )
-  }) 
+  })
 
   const postNewPet = async () => {
     try {
-      const response = await fetch("/api/v1/adoptablePets", {
+      const response = await fetch("/api/v1/adoptable-pets", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -62,7 +62,7 @@ const AddAPetForm = props => {
       })
       if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
-        throw(error)
+        throw (error)
       }
       const body = await response.json()
       setMessage("Your surrender request is in process.")
@@ -87,7 +87,7 @@ const AddAPetForm = props => {
 
   const submitHandler = event => {
     event.preventDefault()
-    if(isValidSubmission()) {
+    if (isValidSubmission()) {
       postNewPet()
       clearForm()
     }
@@ -178,7 +178,7 @@ const AddAPetForm = props => {
           value={addPetForm.vaccinationStatus}
         />
       </label>
-      
+
       <div className="button-group">
         <button type="button" className="button" onClick={clearForm}>
           Clear
