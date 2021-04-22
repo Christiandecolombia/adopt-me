@@ -8,7 +8,7 @@ const PetTypeTile = props => {
         <h2>{props.type}</h2>
         <img alt="Picture of an amimal" src={props.img}></img>
       </Link>
-      <p>{props.description}</p>
+      <h3>{props.description}</h3>
     </div>
   )
 }

@@ -12,3 +12,31 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+
+#nav {
+  border: 2px;
+  width: 100%;
+}
+
+a {
+  padding: 15px;
+  padding-bottom: 5px;
+}
+
+img {
+  width: 50%;
+}
+
+div {
+  margin-top: 5px;
+}
+
+.pet-show {
+  width: 80%;
+  margin: auto;
+  font-weight: bold;
+}
+
+// body {
+//   background-color: #dbfbff;
+// }
