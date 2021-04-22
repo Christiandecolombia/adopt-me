@@ -7,11 +7,11 @@ const PetTypesList = props => {
 
   const getPetTypes = async () => {
     try {
-      const response = await fetch("/api/v1/petTypes")
-      if(!response.ok) {
+      const response = await fetch("/api/v1/pet-types")
+      if (!response.ok) {
         const error = new Error(`${response.status} (${response.statusText})`)
         console.log("error")
-        throw(error)
+        throw (error)
       }
       const data = await response.json()
       const petTypesData = data.petTypes
