@@ -4,9 +4,9 @@ import AdoptablePetTile from './AdoptablePetTile'
 
 const AdoptablePetsList = props => {
   const [adoptablePets, setAdoptablePets] = useState([])
+  const petType = props.match.params.petType
 
   const fetchPets = async () => {
-    const petType = props.match.params.petType
     try {
       const response = await fetch(`/api/v1/petTypes/${petType}`)
       if(!response.ok) {
@@ -30,14 +30,16 @@ const AdoptablePetsList = props => {
     return (
       <AdoptablePetTile
         key={adoptablePet.id}
+        adoptablePetId={adoptablePet.id}
         imgUrl={adoptablePet.imgUrl}
         name={adoptablePet.name}
         age={adoptablePet.age}
         vaccinationStatus={adoptablePet.vaccinationStatus}
+        petType={petType}
       />
     )
   })
-
+  
   return (
     <div>
       {petComponents}
