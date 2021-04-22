@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import _ from "lodash"
 
 import ErrorList from "./ErrorList"
 
 const AddAPetForm = props => {
-  const petTypes = [ "", "cat", "dog", "parrot"]
+  const [petTypes, setPetTypes] = useState([])
 
   const [message, setMessage] = useState("")
 
@@ -20,6 +20,20 @@ const AddAPetForm = props => {
     petImage: "",
     vaccinationStatus: ""
   })
+
+  const getPetTypes = async () => {
+    try {
+      const response = await fetch("/api/v1/petTypes")
+      if (!response.ok) {
+        const error = new Error(`${response.status} (${response.statusText})`)
+        throw(error)
+      }
+      const body = await response.json()
+      setPetTypes(body.petTypes)
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
 
   const handleInput = event => {
     setAddPetForm({
@@ -43,10 +57,10 @@ const AddAPetForm = props => {
     return _.isEmpty(submitErrors)
   }
 
-  const petOptions = petTypes.map(type => {
+  const petOptions = petTypes.map(petType => {
     return (
-      <option key={type} value={type}>
-        {type}
+      <option key={petType.id} value={petType.type}>
+        {petType.type}
       </option>
     )
   }) 
@@ -92,6 +106,10 @@ const AddAPetForm = props => {
       clearForm()
     }
   }
+
+  useEffect(() => {
+    getPetTypes()
+  }, [])
 
   return (
     <form className="callout" onSubmit={submitHandler}>
