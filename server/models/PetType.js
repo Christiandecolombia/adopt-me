@@ -58,7 +58,7 @@ class PetType {
     try {
       const query = `SELECT adoptable_pets.id, adoptable_pets.name, adoptable_pets.img_url, adoptable_pets.age, adoptable_pets.vaccination_status, adoptable_pets.adoption_story, adoptable_pets.pet_type_id
       FROM adoptable_pets
-      JOIN surrender_applications
+      LEFT JOIN surrender_applications
       ON (adoptable_pet_id = adoptable_pets.id)
       AND surrender_applications.status = 'accepted'
       WHERE pet_type_id = $1;`

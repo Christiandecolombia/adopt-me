@@ -43,7 +43,7 @@ adoptablePetsRouter.post('/', async (req, res) => {
   }
 })
 
-adoptablePetsRouter.post('/:petType/:id', async (req, res) => {
+adoptablePetsRouter.post('/:id', async (req, res) => {
   try {
     const adoptionApplication = new AdoptionApplication({
       name: req.body.name,

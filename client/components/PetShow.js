@@ -48,6 +48,7 @@ const PetShow = props => {
         <p>
           {pet.name}'s story: {pet.adoptionStory}
         </p>
+        <AdoptionForm name={pet.name} id={pet.id}/>
       </div>
     )
   }
