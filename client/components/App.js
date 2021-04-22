@@ -9,6 +9,7 @@ import PetTypesList from "./PetTypesList"
 import AdoptablePetsList from "./AdoptablePetsList"
 import NavBar from "./NavBar"
 import PetShow from "./PetShow"
+import AddAPetForm from "./AddAPetForm"
 
 const App = props => {
   useEffect(() => {
@@ -24,7 +25,7 @@ const App = props => {
         <Route exact path="/pets" component={PetTypesList} ></Route>
         <Route exact path="/pets/:petType" component={AdoptablePetsList}></Route>
         <Route exact path="/pets/:petType/:adoptablePetId" component={PetShow}></Route>
-
+        <Route exact path="/adoptions/new" component={AddAPetForm}></Route>
       </Switch>
     </BrowserRouter>
   )
