@@ -6,9 +6,7 @@ const PetTypeTile = props => {
     <div className="text-center">
       <Link to={`/pets/${props.type}`}>
         <h2>{props.type}</h2>
-      </Link>
-      <Link to={`/pets/${props.type}`}>
-        <img src={props.img}></img>
+        <img alt="Picture of an amimal" src={props.img}></img>
       </Link>
       <p>{props.description}</p>
     </div>

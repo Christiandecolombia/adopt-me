@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const AdoptablePetTile = props => {
   let vaccination
-  if(props.vaccinationStatus) {
+  if (props.vaccinationStatus) {
     vaccination = "Yes"
   } else {
     vaccination = "No"
