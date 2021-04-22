@@ -45,7 +45,7 @@ petTypesRouter.post('/:petType', async (req, res) => {
       age: req.body.petAge,
       vaccinationStatus: req.body.vaccinationStatus,
       petTypeId: petType.id,
-      adoptionStory: "Adoption story pending"
+      adoptionStory: "Sadly surrendered to us by someone who wanted the best for them."
     })
     await adoptablePet.save()
     const surrenderApplication = new SurrenderApplication({
