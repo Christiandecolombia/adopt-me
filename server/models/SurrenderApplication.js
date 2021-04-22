@@ -4,7 +4,7 @@ const pool = new pg.Pool({
     connectionString: "postgres://postgres:password@localhost:5432/adopt-me"
 })
 
-class SurrenderApplicaion {
+class SurrenderApplication {
     constructor({ id, name, phoneNumber, phone_number, email, status, adoptablePetId, adoptable_pet_id }) {
         this.id = id
         this.name = name
@@ -25,4 +25,4 @@ class SurrenderApplicaion {
     }
 }
 
-export default SurrenderApplicaion
+export default SurrenderApplication

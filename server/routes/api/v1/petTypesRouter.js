@@ -1,5 +1,6 @@
 import express from "express"
 import AdoptablePet from "../../../models/AdoptablePet.js"
+import AdoptionApplication from "../../../models/AdoptionApplication.js"
 import PetType from "../../../models/PetType.js"
 import SurrenderApplication from "../../../models/SurrenderApplication.js"
 
@@ -38,8 +39,7 @@ petTypesRouter.get('/:petType/:adoptablePetId', async (req, res) => {
 petTypesRouter.post('/:petType', async (req, res) => {
   try {
     const petType = await PetType.findByType(req.body.petType)
-    
-    const adoptablePet = new AdoptablePet({ 
+    const adoptablePet = new AdoptablePet({
       name: req.body.petName,
       imgUrl: req.body.petImage,
       age: req.body.petAge,
@@ -49,7 +49,7 @@ petTypesRouter.post('/:petType', async (req, res) => {
     })
     await adoptablePet.save()
     const surrenderApplication = new SurrenderApplication({
-      name:  req.body.name,
+      name: req.body.name,
       phoneNumber: req.body.phoneNumber,
       email: req.body.email,
       adoptablePetId: adoptablePet.id
@@ -62,5 +62,21 @@ petTypesRouter.post('/:petType', async (req, res) => {
   }
 })
 
+petTypesRouter.post('/:petType/:id', async (req, res) => {
+  try {
+    const adoptionApplication = new AdoptionApplication({
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      homeStatus: req.body.homeStatus,
+      applicationStatus: req.body.applicationStatus,
+      adoptablePetId: req.params.id
+    })
+    await adoptionApplication.save()
+    res.status(201).json({ adoptionApplication: adoptionApplication })
+  } catch (error) {
+    res.status(500).json({ errors: error })
+  }
+})
 
 export default petTypesRouter
