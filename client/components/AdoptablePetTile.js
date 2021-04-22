@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AdoptablePetTile = props => {
   let vaccination
@@ -9,9 +10,11 @@ const AdoptablePetTile = props => {
   }
 
   return (
-    <div>
-      <img src={props.imgUrl}></img>
-      <h2>Name: {props.name}</h2>
+    <div className="text-center">
+      <Link to={`/pets/${props.petType}/${props.adoptablePetId}`}>
+        <img src={props.imgUrl}></img>
+        <h2>Name: {props.name}</h2>
+      </Link>
       <h3>Age: {props.age}</h3>
       <h3>Vaccinated: {vaccination}</h3>
     </div>

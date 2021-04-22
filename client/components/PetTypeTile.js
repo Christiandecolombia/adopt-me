@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const PetTypeTile = props => {
   return (
-    <div>
+    <div className="text-center">
       <Link to={`/pets/${props.type}`}>
         <h2>{props.type}</h2>
       </Link>

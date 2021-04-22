@@ -51,6 +51,26 @@ class PetType {
       throw (err)
     }
   }
+
+  async findPet(adoptablePetId) {
+    const petFile = await import("./AdoptablePet.js")
+    const AdoptablePet = petFile.default
+    try {
+      const queryString = "SELECT * FROM adoptable_pets WHERE id=$1 AND pet_type_id=$2"
+      const result = await pool.query(queryString, [adoptablePetId, this.id])
+      if(result.rows.length === 0) {
+        const errorMessage = "Sorry the pet cannot be found."
+        const error = new Error(errorMessage)
+        throw(error)
+      }
+      const petData = result.rows[0]
+      const pet = new AdoptablePet(petData)
+      return pet
+    } catch (error) {
+      console.log(error)
+      throw(error)
+    }
+  }
 }
 
 export default PetType
