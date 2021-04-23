@@ -71,7 +71,7 @@ class PetType {
       throw (err)
     }
   }
-  
+
   async findPet(adoptablePetId) {
     const petFile = await import("./AdoptablePet.js")
     const AdoptablePet = petFile.default

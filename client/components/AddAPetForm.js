@@ -112,10 +112,10 @@ const AddAPetForm = props => {
   }, [])
 
   return (
-    <form className="callout" onSubmit={submitHandler}>
+    <form className="callout surrender-form" onSubmit={submitHandler}>
       <ErrorList errors={errors} />
 
-      <h2>Surrender a pet</h2>
+      <h2 className="text-center">Surrender a pet</h2>
       <p>{message}</p>
       <label htmlFor="name">Name:
         <input
@@ -173,6 +173,7 @@ const AddAPetForm = props => {
           name="petType"
           onChange={handleInput}
           value={newPet.petType}>
+          <option></option>
           {petOptions}
         </select>
       </label>
@@ -196,13 +197,12 @@ const AddAPetForm = props => {
           value={newPet.vaccinationStatus}
         />
       </label>
-
-      <div className="button-group">
+      <div className="text-center">
         <button type="button" className="button" onClick={clearForm}>
           Clear
         </button>
-        <input className="button" type="submit" value="Submit" />
       </div>
+      <div className="text-center"><input className="button" type="submit" value="Submit" /></div>
     </form>
   )
 }

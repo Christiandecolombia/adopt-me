@@ -17,7 +17,6 @@ class AdoptionApplication {
 
   async save() {
     try {
-      debugger
       const query =
         "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, adoptable_pet_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
       const result = await pool.query(query, [
@@ -29,7 +28,6 @@ class AdoptionApplication {
         this.adoptablePetId
       ])
       this.id = result.rows[0].id
-      debugger
       return true
     } catch (err) {
       throw err
