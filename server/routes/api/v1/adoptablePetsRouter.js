@@ -46,7 +46,6 @@ adoptablePetsRouter.post('/', async (req, res) => {
 
 adoptablePetsRouter.post('/:id', async (req, res) => {
   try {
-    debugger
     const adoptionApplication = new AdoptionApplication({
       name: req.body.name,
       phoneNumber: req.body.phoneNumber,
@@ -55,7 +54,6 @@ adoptablePetsRouter.post('/:id', async (req, res) => {
       applicationStatus: req.body.applicationStatus,
       adoptablePetId: req.params.id
     }) 
-    debugger
     await adoptionApplication.save()
     res.status(201).json({ adoptionApplication: adoptionApplication })
   } catch (error) {
