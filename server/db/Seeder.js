@@ -21,6 +21,11 @@ class Seeder {
           type: "parrot",
           imgUrl: "https://images.unsplash.com/photo-1517101724602-c257fe568157?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBhcnJvdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
           description: "Feathered friends who can learn bad words"
+        },
+        {
+          type: "hamster",
+          imgUrl: "https://www.thesprucepets.com/thmb/4OAoAx-ApcojoHpkgxIlbPf0cpw=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/you-have-called-me-dwarf-hamster-6-weeks-old-184337772-5848b1065f9b58dccc9fc10c.jpg",
+          description: "Adorable creatures that fit in the palm of your hands"
         }
       ]
       for (let i = 0; i < petTypes.length; i++) {

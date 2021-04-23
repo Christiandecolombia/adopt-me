@@ -63,10 +63,21 @@ const AdoptionForm = props => {
     })
   }
 
+  const clearForm = event => {
+    setAdoptionForm({
+      name: "",
+      phoneNumber: "",
+      email: "",
+      homeStatus: ""
+    })
+    setErrors({})
+  }
+
   const submitHandler = event => {
     event.preventDefault()
     if (isValidSubmission()) {
       postApplication()
+      clearForm()
       props.onSubmit()
     }
   }
@@ -114,10 +125,12 @@ const AdoptionForm = props => {
           {homes}
         </select>
       </label>
-
-      <div className="button-group">
-        <input className="button" type="submit" value="Submit" />
+      <div>
+        <button type="button" className="button" onClick={clearForm}>
+            Clear
+        </button>
       </div>
+      <input className="button" type="submit" value="Submit" />
     </form>
   )
 }

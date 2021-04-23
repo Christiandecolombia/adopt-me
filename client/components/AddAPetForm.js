@@ -197,7 +197,6 @@ const AddAPetForm = props => {
           value={newPet.vaccinationStatus}
         />
       </label>
-
       <div className="text-center">
         <button type="button" className="button" onClick={clearForm}>
           Clear

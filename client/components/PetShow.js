@@ -9,8 +9,8 @@ const PetShow = props => {
   const [submitMessage, setSubmitMessage] = useState("")
 
   const getPet = async () => {
-    const adoptablePetId = props.match.params.adoptablePetId
     const petType = props.match.params.petType
+    const adoptablePetId = props.match.params.adoptablePetId
     try {
       const response = await fetch(`/api/v1/adoptable-pets/${petType}/${adoptablePetId}`)
       if (!response.ok) {
@@ -37,12 +37,12 @@ const PetShow = props => {
     vaccination = "No"
   }
 
-  const onClick = (event) => {
+  const onClick = event => {
     setAdoptionForm("")
     setSubmitMessage("")
   }
 
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     setAdoptionForm("hide-form")
     setSubmitMessage("Your request is in process.")
   }
