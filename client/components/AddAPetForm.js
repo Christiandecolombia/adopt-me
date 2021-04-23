@@ -188,14 +188,17 @@ const AddAPetForm = props => {
         />
       </label>
 
-      <label htmlFor="vaccinationStatus">Vaccination Status:
-        <input
-          type="text"
+      <label htmlFor="vaccinationStatus">Vaccinated?
+        <select
           id="vaccinationStatus"
           name="vaccinationStatus"
           onChange={handleInput}
           value={newPet.vaccinationStatus}
-        />
+        >
+          <option></option>
+          <option>true</option>
+          <option>false</option>
+        </select>
       </label>
       <div className="text-center">
         <button type="button" className="button" onClick={clearForm}>
