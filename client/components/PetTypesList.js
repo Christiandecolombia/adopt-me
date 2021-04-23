@@ -35,7 +35,7 @@ const PetTypesList = props => {
   useEffect(() => {
     getPetTypes()
   }, [])
-
+  
   return (
     <div>
       {petTypeTileComponents}

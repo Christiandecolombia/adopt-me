@@ -20,4 +20,48 @@
 .surrender-form {
   width: 50%;
   margin: auto;
+  margin-top: 20px;
+}
+
+.pet-show {
+  width: 80%;
+  margin: auto;
+  font-weight: bold;
+}
+
+body {
+  background-image: repeating-radial-gradient(#ffe6e6, #f9ffc7 10%, #ccffc7 15%, #c7fdff 15%);
+}
+
+#nav {
+  border: 2px;
+  width: 100%;
+}
+
+a {
+  padding: 10px;
+  padding-bottom: 5px;
+}
+
+img {
+  width: 50%;
+}
+
+div {
+  margin-top: 10px;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  background-color: black;
+  margin: 0px;
+  padding-top: 5px;
+}
+
+.pet-tile {
+  border: double;
+  margin: 30px;
+  padding: 5px;
+  background-image: linear-gradient(to bottom right, #ffcccc, #d5ccff);
 }

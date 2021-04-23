@@ -7,8 +7,9 @@ import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom"
 
 import PetTypesList from "./PetTypesList"
 import AdoptablePetsList from "./AdoptablePetsList"
-import AddAPetForm from "./AddAPetForm"
+import NavBar from "./NavBar"
 import PetShow from "./PetShow"
+import AddAPetForm from "./AddAPetForm"
 
 const App = props => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const App = props => {
   }, [])
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route exact path="/">
           <Redirect to="/pets" />

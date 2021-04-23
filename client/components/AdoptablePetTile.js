@@ -10,7 +10,7 @@ const AdoptablePetTile = props => {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center pet-tile">
       <Link to={`/pets/${props.petType}/${props.adoptablePetId}`}>
         <img src={props.imgUrl} alt={`A cute ${props.petType}`}></img>
         <h2>Name: {props.name}</h2>

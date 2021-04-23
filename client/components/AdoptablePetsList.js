@@ -22,9 +22,10 @@ const AdoptablePetsList = props => {
     }
   }
 
+  const currentType = props.match.params.petType
   useEffect(() => {
     fetchPets()
-  }, [])
+  }, [currentType])
 
   const petComponents = adoptablePets.map(adoptablePet => {
     return (
