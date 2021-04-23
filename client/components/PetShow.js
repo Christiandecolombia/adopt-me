@@ -39,6 +39,7 @@ const PetShow = props => {
 
   const onClick = (event) => {
     setAdoptionForm("")
+    setSubmitMessage("")
   }
 
   const onSubmit = (event) => {
@@ -48,7 +49,9 @@ const PetShow = props => {
 
   let petDetail
   if (_.isEmpty(pet)) {
-    petDetail = <h2 className="text-center">Sorry the pet was not found.</h2>
+    petDetail = (
+      <h2 className="text-center">Sorry the pet was not found.</h2>
+    )
   } else {
     petDetail = (
       <div className="text-center pet-show">
@@ -59,7 +62,9 @@ const PetShow = props => {
         <p>
           {pet.name}'s story: {pet.adoptionStory}
         </p>
-        <button type="button" className="button" onClick={onClick}>Adopt Me!</button>
+        <button type="button" className="button" onClick={onClick}>
+          Adopt Me!
+        </button>
         <div className={adoptionForm}>
           <AdoptionForm name={pet.name} id={pet.id} onSubmit={onSubmit} />
         </div>

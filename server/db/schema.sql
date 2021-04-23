@@ -24,7 +24,7 @@ CREATE TABLE adoptable_pets (
 CREATE TABLE surrender_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  phone_number VARCHAR(12),
+  phone_number VARCHAR(20),
   email VARCHAR(255),
   status VARCHAR(255) DEFAULT 'pending',
   adoptable_pet_id INTEGER REFERENCES adoptable_pets(id)
@@ -33,7 +33,7 @@ CREATE TABLE surrender_applications (
 CREATE TABLE adoption_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  phone_number VARCHAR(12) NOT NULL,
+  phone_number VARCHAR(20) NOT NULL,
   email VARCHAR(255) NOT NULL,
   home_status VARCHAR(255) NOT NULL,
   application_status VARCHAR(255) DEFAULT 'pending' NOT NULL,
